@@ -1,0 +1,86 @@
+body {
+    user-select: none;
+    font-family: Poppins, sans-serif;
+}
+
+.header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.header p {
+    width: 30%;
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+#board {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    font-size: 4rem;
+    opacity: 0;
+}
+
+#piles {
+    width: 60%;
+}
+
+.pile-1 {
+    width: 50%;
+    margin: auto;
+}
+
+.pile-2 {
+    width: 75%;
+    margin: auto;
+}
+
+.pile-3 {
+    width: 94%;
+    margin: auto;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+.counter {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+}
+
+#controls {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+button {
+    margin: 10px;
+    font-size: 1rem;
+}
+
+#setup-questions {
+    opacity: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+}

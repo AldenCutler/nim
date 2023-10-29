@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script defer src="scripts.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+    href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins:wght@100;400&display=swap"
+    rel="stylesheet"
+    />
+</head>
+<body>
+    <div class="header">
+        <h1>Nim</h1>
+        <!-- <p>The player who takes the last counter wins.</p> -->
+        <p>
+            Players take turns removing items from piles. 
+            On every turn, each player can remove as many items as they like from a single pile.
+            The player who takes the last item wins.
+        </p>
+    </div>
+    <div id="controls">
+      <button id="new-game" onclick="setup()">New Game</button>
+      <div id="setup-questions">
+        <p>Would you like to go first?</p>
+        <div id="btn-group">
+            <button onclick="playHumanFirst()">Yes</button>
+            <button onclick="playComputerFirst()">No</button>
+        </div>
+      </div>
+      <!-- <button id="undo" onclick="reset()">Undo</button> -->
+    </div>
+    <div id="board">
+      <div id="piles">
+        <div class="pile-1">
+          <div class="row">
+            <div class="counter">
+              <svg
+                height="100px"
+                width="100px"
+                version="1.1"
+                id="Capa_1"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                viewBox="-5.8 -5.8 69.60 69.60"
+                xml:space="preserve"
+                fill="#000000"
+                transform="rotate(0)"
+                stroke="#000000"
+              >
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g
+                  id="SVGRepo_tracerCarrier"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke="#CCCCCC"
+                  stroke-width="0.11599999999999999"
+                ></g>
+                <g id="SVGRepo_iconCarrier">
+                  <g>
+                    <path
+                      style="fill: #f00"
+                      d="M48.001,58H9.999C4.477,58,0,53.523,0,48.001V9.999C0,4.477,4.477,0,9.999,0h38.003 C53.523,0,58,4.477,58,9.999v38.003C58,53.523,53.523,58,48.001,58z"
+                    ></path>
+                  </g>
+                </g>
+              </svg>
+            </div>
+          </div>
+          <div class="row" style="width: 75%; margin:auto;">
+            <div class="counter">
+              <svg
+                height="100px"
+                width="100px"
+                version="1.1"
+                id="Capa_1"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                viewBox="-5.8 -5.8 69.60 69.60"
+                xml:space="preserve"
+                fill="#000000"
+                transform="rotate(0)"
+                stroke="#000000"
+              >
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g
+                  id="SVGRepo_tracerCarrier"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke="#CCCCCC"
+                  stroke-width="0.11599999999999999"
+                ></g>
+                <g id="SVGRepo_iconCarrier">
+                  <g>
+                    <path
+                      style="fill: #f00"
+                      d="M48.001,58H9.999C4.477,58,0,53.523,0,48.001V9.999C0,4.477,4.477,0,9.999,0h38.003 C53.523,0,58,4.477,58,9.999v38.003C58,53.523,53.523,58,48.001,58z"
+                    ></path>
+                  </g>
+                </g>
+              </svg>
+            </div>
+            <div class="counter">
+              <svg
+                height="100px"
+                width="100px"
+                version="1.1"
+                id="Capa_1"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                viewBox="-5.8 -5.8 69.60 69.60"
+                xml:space="preserve"
+                fill="#000000"
+                transform="rotate(0)"
+                stroke="#000000"
+              >
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g
+                  id="SVGRepo_tracerCarrier"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke="#CCCCCC"
+                  stroke-width="0.11599999999999999"
+                ></g>
+                <g id="SVGRepo_iconCarrier">
+                  <g>
+                    <path
+                      style="fill: #f00"
+                      d="M48.001,58H9.999C4.477,58,0,53.523,0,48.001V9.999C0,4.477,4.477,0,9.999,0h38.003 C53.523,0,58,4.477,58,9.999v38.003C58,53.523,53.523,58,48.001,58z"
+                    ></path>
+                  </g>
+                </g>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="pile-2">
+          <div class="row" style="width: 75%; margin: auto;">
+            <div class="counter">
+              <svg
+                height="100px"
+                width="100px"
+                version="1.1"
+                id="Capa_1"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                viewBox="-5.8 -5.8 69.60 69.60"
+                xml:space="preserve"
+                fill="#000000"
+                transform="rotate(0)"
+                stroke="#000000"
+              >
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g
+                  id="SVGRepo_tracerCarrier"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke="#CCCCCC"
+                  stroke-width="0.11599999999999999"
+                ></g>
+                <g id="SVGRepo_iconCarrier">
+                  <g>
+                    <path
+                      style="fill: orange"
+                      d="M48.001,58H9.999C4.477,58,0,53.523,0,48.001V9.999C0,4.477,4.477,0,9.999,0h38.003 C53.523,0,58,4.477,58,9.999v38.003C58,53.523,53.523,58,48.001,58z"
+                    ></path>
+                  </g>
+                </g>
+              </svg>
+            </div>
+            <div class="counter">
+              <svg
+                height="100px"
+                width="100px"
+                version="1.1"
+                id="Capa_1"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                viewBox="-5.8 -5.8 69.60 69.60"
+                xml:space="preserve"
+                fill="#000000"
+                transform="rotate(0)"
+                stroke="#000000"
+              >
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g
+                  id="SVGRepo_tracerCarrier"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke="#CCCCCC"
+                  stroke-width="0.11599999999999999"
+                ></g>
+                <g id="SVGRepo_iconCarrier">
+                  <g>
+                    <path
+                      style="fill: orange"
+                      d="M48.001,58H9.999C4.477,58,0,53.523,0,48.001V9.999C0,4.477,4.477,0,9.999,0h38.003 C53.523,0,58,4.477,58,9.999v38.003C58,53.523,53.523,58,48.001,58z"
+                    ></path>
+                  </g>
+                </g>
+              </svg>
+            </div>
+            <div class="counter">
+              <svg
+                height="100px"
+                width="100px"
+                version="1.1"
+                id="Capa_1"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                viewBox="-5.8 -5.8 69.60 69.60"
+                xml:space="preserve"
+                fill="#000000"
+                transform="rotate(0)"
+                stroke="#000000"
+              >
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g
+                  id="SVGRepo_tracerCarrier"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke="#CCCCCC"
+                  stroke-width="0.11599999999999999"
+                ></g>
+                <g id="SVGRepo_iconCarrier">
+                  <g>
+                    <path
+                      style="fill: orange"
+                      d="M48.001,58H9.999C4.477,58,0,53.523,0,48.001V9.999C0,4.477,4.477,0,9.999,0h38.003 C53.523,0,58,4.477,58,9.999v38.003C58,53.523,53.523,58,48.001,58z"
+                    ></path>
+                  </g>
+                </g>
+              </svg>
+            </div>
+          </div>
+          <div class="row">
+            <div class="counter">
+              <svg
+                height="100px"
+                width="100px"
+                version="1.1"
+                id="Capa_1"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                viewBox="-5.8 -5.8 69.60 69.60"
+                xml:space="preserve"
+                fill="#000000"
+                transform="rotate(0)"
+                stroke="#000000"
+              >
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g
+                  id="SVGRepo_tracerCarrier"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke="#CCCCCC"
+                  stroke-width="0.11599999999999999"
+                ></g>
+                <g id="SVGRepo_iconCarrier">
+                  <g>
+                    <path
+                      style="fill: orange"
+                      d="M48.001,58H9.999C4.477,58,0,53.523,0,48.001V9.999C0,4.477,4.477,0,9.999,0h38.003 C53.523,0,58,4.477,58,9.999v38.003C58,53.523,53.523,58,48.001,58z"
+                    ></path>
+                  </g>
+                </g>
+              </svg>
+            </div>
+            <div class="counter">
+              <svg
+                height="100px"
+                width="100px"
+                version="1.1"
+                id="Capa_1"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                viewBox="-5.8 -5.8 69.60 69.60"
+                xml:space="preserve"
+                fill="#000000"
+                transform="rotate(0)"
+                stroke="#000000"
+              >
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g
+                  id="SVGRepo_tracerCarrier"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke="#CCCCCC"
+                  stroke-width="0.11599999999999999"
+                ></g>
+                <g id="SVGRepo_iconCarrier">
+                  <g>
+                    <path
+                      style="fill: orange"
+                      d="M48.001,58H9.999C4.477,58,0,53.523,0,48.001V9.999C0,4.477,4.477,0,9.999,0h38.003 C53.523,0,58,4.477,58,9.999v38.003C58,53.523,53.523,58,48.001,58z"
+                    ></path>
+                  </g>
+                </g>
+              </svg>
+            </div>
+            <div class="counter">
+              <svg
+                height="100px"
+                width="100px"
+                version="1.1"
+                id="Capa_1"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                viewBox="-5.8 -5.8 69.60 69.60"
+                xml:space="preserve"
+                fill="#000000"
+                transform="rotate(0)"
+                stroke="#000000"
+              >
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g
+                  id="SVGRepo_tracerCarrier"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke="#CCCCCC"
+                  stroke-width="0.11599999999999999"
+                ></g>
+                <g id="SVGRepo_iconCarrier">
+                  <g>
+                    <path
+                      style="fill: orange"
+                      d="M48.001,58H9.999C4.477,58,0,53.523,0,48.001V9.999C0,4.477,4.477,0,9.999,0h38.003 C53.523,0,58,4.477,58,9.999v38.003C58,53.523,53.523,58,48.001,58z"
+                    ></path>
+                  </g>
+                </g>
+              </svg>
+            </div>
+            <div class="counter">
+              <svg
+                height="100px"
+                width="100px"
+                version="1.1"
+                id="Capa_1"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                viewBox="-5.8 -5.8 69.60 69.60"
+                xml:space="preserve"
+                fill="#000000"
+                transform="rotate(0)"
+                stroke="#000000"
+              >
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g
+                  id="SVGRepo_tracerCarrier"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke="#CCCCCC"
+                  stroke-width="0.11599999999999999"
+                ></g>
+                <g id="SVGRepo_iconCarrier">
+                  <g>
+                    <path
+                      style="fill: orange"
+                      d="M48.001,58H9.999C4.477,58,0,53.523,0,48.001V9.999C0,4.477,4.477,0,9.999,0h38.003 C53.523,0,58,4.477,58,9.999v38.003C58,53.523,53.523,58,48.001,58z"
+                    ></path>
+                  </g>
+                </g>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="row pile-3">
+          <div class="counter">
+            <svg
+              height="100px"
+              width="100px"
+              version="1.1"
+              id="Capa_1"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+              viewBox="-5.8 -5.8 69.60 69.60"
+              xml:space="preserve"
+              fill="#000000"
+              transform="rotate(0)"
+              stroke="#000000"
+            >
+              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+              <g
+                id="SVGRepo_tracerCarrier"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke="#CCCCCC"
+                stroke-width="0.11599999999999999"
+              ></g>
+              <g id="SVGRepo_iconCarrier">
+                <g>
+                  <path
+                    style="fill: yellow"
+                    d="M48.001,58H9.999C4.477,58,0,53.523,0,48.001V9.999C0,4.477,4.477,0,9.999,0h38.003 C53.523,0,58,4.477,58,9.999v38.003C58,53.523,53.523,58,48.001,58z"
+                  ></path>
+                </g>
+              </g>
+            </svg>
+          </div>
+          <div class="counter">
+            <svg
+              height="100px"
+              width="100px"
+              version="1.1"
+              id="Capa_1"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+              viewBox="-5.8 -5.8 69.60 69.60"
+              xml:space="preserve"
+              fill="#000000"
+              transform="rotate(0)"
+              stroke="#000000"
+            >
+              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+              <g
+                id="SVGRepo_tracerCarrier"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke="#CCCCCC"
+                stroke-width="0.11599999999999999"
+              ></g>
+              <g id="SVGRepo_iconCarrier">
+                <g>
+                  <path
+                    style="fill: yellow"
+                    d="M48.001,58H9.999C4.477,58,0,53.523,0,48.001V9.999C0,4.477,4.477,0,9.999,0h38.003 C53.523,0,58,4.477,58,9.999v38.003C58,53.523,53.523,58,48.001,58z"
+                  ></path>
+                </g>
+              </g>
+            </svg>
+          </div>
+          <div class="counter">
+            <svg
+              height="100px"
+              width="100px"
+              version="1.1"
+              id="Capa_1"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+              viewBox="-5.8 -5.8 69.60 69.60"
+              xml:space="preserve"
+              fill="#000000"
+              transform="rotate(0)"
+              stroke="#000000"
+            >
+              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+              <g
+                id="SVGRepo_tracerCarrier"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke="#CCCCCC"
+                stroke-width="0.11599999999999999"
+              ></g>
+              <g id="SVGRepo_iconCarrier">
+                <g>
+                  <path
+                    style="fill: yellow"
+                    d="M48.001,58H9.999C4.477,58,0,53.523,0,48.001V9.999C0,4.477,4.477,0,9.999,0h38.003 C53.523,0,58,4.477,58,9.999v38.003C58,53.523,53.523,58,48.001,58z"
+                  ></path>
+                </g>
+              </g>
+            </svg>
+          </div>
+          <div class="counter">
+            <svg
+              height="100px"
+              width="100px"
+              version="1.1"
+              id="Capa_1"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+              viewBox="-5.8 -5.8 69.60 69.60"
+              xml:space="preserve"
+              fill="#000000"
+              transform="rotate(0)"
+              stroke="#000000"
+            >
+              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+              <g
+                id="SVGRepo_tracerCarrier"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke="#CCCCCC"
+                stroke-width="0.11599999999999999"
+              ></g>
+              <g id="SVGRepo_iconCarrier">
+                <g>
+                  <path
+                    style="fill: yellow"
+                    d="M48.001,58H9.999C4.477,58,0,53.523,0,48.001V9.999C0,4.477,4.477,0,9.999,0h38.003 C53.523,0,58,4.477,58,9.999v38.003C58,53.523,53.523,58,48.001,58z"
+                  ></path>
+                </g>
+              </g>
+            </svg>
+          </div>
+          <div class="counter">
+            <svg
+              height="100px"
+              width="100px"
+              version="1.1"
+              id="Capa_1"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+              viewBox="-5.8 -5.8 69.60 69.60"
+              xml:space="preserve"
+              fill="#000000"
+              transform="rotate(0)"
+              stroke="#000000"
+            >
+              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+              <g
+                id="SVGRepo_tracerCarrier"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke="#CCCCCC"
+                stroke-width="0.11599999999999999"
+              ></g>
+              <g id="SVGRepo_iconCarrier">
+                <g>
+                  <path
+                    style="fill: yellow"
+                    d="M48.001,58H9.999C4.477,58,0,53.523,0,48.001V9.999C0,4.477,4.477,0,9.999,0h38.003 C53.523,0,58,4.477,58,9.999v38.003C58,53.523,53.523,58,48.001,58z"
+                  ></path>
+                </g>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </body>
+</html>
